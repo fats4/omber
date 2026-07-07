@@ -1,0 +1,64 @@
+.dialog-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: end center;
+  padding: 1rem;
+  background: rgba(26, 32, 44, 0.45);
+  backdrop-filter: blur(4px);
+}
+
+.dialog-box {
+  width: min(560px, 100%);
+  padding: 1.25rem 1.5rem 1.5rem;
+  background: var(--color-bg);
+  border: 2px solid var(--color-border);
+  box-shadow: 6px 6px 0 var(--color-border);
+}
+
+.dialog-box__eyebrow {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-purple);
+  margin-bottom: 0.5rem;
+}
+
+.dialog-box__speaker {
+  font-size: 0.875rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.dialog-box__body {
+  display: grid;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+.dialog-box__btn {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: var(--color-green);
+  border: 2px solid var(--color-border);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 var(--color-border);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.dialog-box__btn:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 var(--color-border);
+}
+
+.dialog-box__btn:active {
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 0 var(--color-border);
+}

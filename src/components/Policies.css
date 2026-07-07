@@ -1,0 +1,55 @@
+.policies {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1.5rem 4rem;
+}
+
+.policies__header {
+  margin-bottom: 1.5rem;
+}
+
+.policies__eyebrow {
+  display: none;
+}
+
+.policies__header h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.policies__grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.policies__card {
+  padding: 1.25rem;
+  border: 2px solid var(--color-border);
+}
+
+.policies__card h3 {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-purple);
+  margin-bottom: 0.5rem;
+}
+
+.policies__card p {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+@media (min-width: 768px) {
+  .policies__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .policies__grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

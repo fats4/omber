@@ -1,0 +1,12 @@
+{
+  "name": "renaomber-discord-setup",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "setup": "node setup.mjs"
+  },
+  "dependencies": {
+    "discord.js": "^14.22.1",
+    "dotenv": "^16.6.1"
+  }
+}

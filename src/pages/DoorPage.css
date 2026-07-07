@@ -1,0 +1,160 @@
+.door-page {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 2rem 1.25rem;
+  background: var(--color-bg);
+  overflow: hidden;
+}
+
+.door-page__stage {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  perspective: 900px;
+}
+
+.door-page__trigger {
+  appearance: none;
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  transform-origin: 50% 46%;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.door-page__trigger:hover:not(:disabled) {
+  transform: scale(1.03);
+  filter: drop-shadow(0 12px 28px rgb(93 64 255 / 18%));
+}
+
+.door-page__trigger:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.door-page__trigger:focus-visible {
+  outline: 3px solid var(--color-purple);
+  outline-offset: 6px;
+}
+
+.door-page__trigger:disabled {
+  cursor: default;
+}
+
+.door-page__image {
+  display: block;
+  width: min(72vw, 320px);
+  height: auto;
+  user-select: none;
+  -webkit-user-drag: none;
+  transform-origin: 50% 46%;
+}
+
+.door-page__hint {
+  position: relative;
+  z-index: 2;
+  font-family: var(--font);
+  font-size: 0.875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.door-page__veil {
+  position: fixed;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  opacity: 0;
+  background: #070707;
+}
+
+/* Animasi masuk pintu: zoom ke panel ungu → gelap → terang (shop) */
+.door-page--entering .door-page__trigger {
+  animation: door-walk-in 1.6s cubic-bezier(0.45, 0.05, 0.2, 1) forwards;
+}
+
+.door-page--entering .door-page__hint {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.door-page--entering .door-page__veil {
+  animation: door-veil 1.6s ease forwards;
+}
+
+@keyframes door-walk-in {
+  0% {
+    transform: scale(1) translateZ(0);
+    filter: brightness(1);
+  }
+  28% {
+    transform: scale(2.8) translateZ(60px);
+    filter: brightness(0.95);
+  }
+  52% {
+    transform: scale(7) translateZ(180px);
+    filter: brightness(0.55);
+  }
+  72% {
+    transform: scale(16) translateZ(280px);
+    filter: brightness(0.15);
+  }
+  100% {
+    transform: scale(28) translateZ(420px);
+    filter: brightness(2.2);
+  }
+}
+
+@keyframes door-veil {
+  0%,
+  45% {
+    opacity: 0;
+    background: #070707;
+  }
+  58% {
+    opacity: 1;
+    background: #070707;
+  }
+  78% {
+    opacity: 1;
+    background: #1a1028;
+  }
+  100% {
+    opacity: 1;
+    background: #ffffff;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .door-page--entering .door-page__trigger {
+    animation: door-walk-in-reduced 0.5s ease forwards;
+  }
+
+  .door-page--entering .door-page__veil {
+    animation: door-veil-reduced 0.5s ease forwards;
+  }
+
+  @keyframes door-walk-in-reduced {
+    to {
+      transform: scale(1.05);
+      filter: brightness(1.1);
+    }
+  }
+
+  @keyframes door-veil-reduced {
+    to {
+      opacity: 1;
+      background: #ffffff;
+    }
+  }
+}
