@@ -34,7 +34,7 @@ export function DoorPage() {
         </button>
       </div>
 
-      <p className="door-page__hint">COMING SOON</p>
+      <p className="door-page__hint">When</p>
 
       <div className="door-page__veil" aria-hidden />
     </div>
