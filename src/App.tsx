@@ -1,5 +1,6 @@
 import { lazy, Suspense } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { COMING_SOON } from './config/site';
 import { DoorPage } from './pages/DoorPage';
 import { ShopPage } from './pages/ShopPage';
 
@@ -27,13 +28,20 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<DoorPage />} />
-        <Route path="/shop" element={<ShopPage />} />
+        <Route
+          path="/shop"
+          element={COMING_SOON ? <Navigate to="/" replace /> : <ShopPage />}
+        />
         <Route
           path="/story"
           element={
-            <Suspense fallback={<StoryLoading />}>
-              <StoryPage />
-            </Suspense>
+            COMING_SOON ? (
+              <Navigate to="/" replace />
+            ) : (
+              <Suspense fallback={<StoryLoading />}>
+                <StoryPage />
+              </Suspense>
+            )
           }
         />
       </Routes>

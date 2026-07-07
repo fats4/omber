@@ -1,48 +1,40 @@
-import { useCallback, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useCallback, useState, type AnimationEvent } from 'react';
 import './DoorPage.css';
 
-const ENTER_DURATION_MS = 1600;
-
 export function DoorPage() {
-  const navigate = useNavigate();
-  const [entering, setEntering] = useState(false);
+  const [zooming, setZooming] = useState(false);
 
-  const handleEnter = useCallback(() => {
-    if (entering) return;
-    setEntering(true);
-  }, [entering]);
+  const handlePeek = useCallback(() => {
+    if (zooming) return;
+    setZooming(true);
+  }, [zooming]);
 
-  useEffect(() => {
-    if (!entering) return;
-
-    const timer = window.setTimeout(() => {
-      navigate('/shop');
-    }, ENTER_DURATION_MS);
-
-    return () => window.clearTimeout(timer);
-  }, [entering, navigate]);
+  const handleZoomEnd = useCallback((event: AnimationEvent<HTMLButtonElement>) => {
+    if (!event.animationName.startsWith('door-peek-zoom')) return;
+    setZooming(false);
+  }, []);
 
   return (
-    <div className={`door-page ${entering ? 'door-page--entering' : ''}`}>
+    <div className={`door-page door-page--soon ${zooming ? 'door-page--zooming' : ''}`}>
       <div className="door-page__stage">
         <button
           type="button"
           className="door-page__trigger"
-          onClick={handleEnter}
-          disabled={entering}
-          aria-label="Masuk ke RENAOMBER"
+          onClick={handlePeek}
+          disabled={zooming}
+          onAnimationEnd={handleZoomEnd}
+          aria-label="Ketuk mascot RENAOMBER"
         >
           <img
-            src="/door.png"
-            alt="Pintu RENAOMBER"
+            src="/omber-door.gif"
+            alt="RENAOMBER mascot"
             className="door-page__image"
             draggable={false}
           />
         </button>
       </div>
 
-      <p className="door-page__hint">Ketuk pintu untuk masuk kedalam website</p>
+      <p className="door-page__hint">COMING SOON</p>
 
       <div className="door-page__veil" aria-hidden />
     </div>
