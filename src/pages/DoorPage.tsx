@@ -15,7 +15,7 @@ export function DoorPage() {
         </div>
       </div>
 
-      <p className="door-page__hint">When</p>
+      <p className="door-page__hint">wen yah ...</p>
     </ScribbleCanvas>
   );
 }
