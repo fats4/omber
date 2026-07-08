@@ -19,44 +19,9 @@
   place-items: center;
 }
 
-.door-page--soon {
-  --face-origin-x: 41%;
-  --face-origin-y: 42%;
-}
-
 .door-page__mascot {
   display: grid;
   place-items: center;
-}
-
-.door-page__trigger {
-  appearance: none;
-  border: none;
-  background: none;
-  padding: 0;
-  cursor: pointer;
-  border-radius: 0.5rem;
-  transform-origin: 50% 50%;
-  transition: transform 0.25s ease, filter 0.25s ease;
-  backface-visibility: hidden;
-}
-
-.door-page__trigger:hover:not(:disabled) {
-  transform: scale(1.03);
-  filter: drop-shadow(0 12px 28px rgb(93 64 255 / 18%));
-}
-
-.door-page__trigger:active:not(:disabled) {
-  transform: scale(0.98);
-}
-
-.door-page__trigger:focus-visible {
-  outline: 3px solid var(--color-purple);
-  outline-offset: 6px;
-}
-
-.door-page__trigger:disabled {
-  cursor: default;
 }
 
 .door-page__image {
@@ -65,7 +30,7 @@
   height: auto;
   user-select: none;
   -webkit-user-drag: none;
-  transform-origin: 50% 50%;
+  pointer-events: none;
 }
 
 .door-page__hint {
@@ -76,7 +41,6 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--color-text-muted);
-  transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
 .door-page__veil {
@@ -88,55 +52,7 @@
   background: #070707;
 }
 
-/* Lucu-lucuan: zoom ke wajah mascot lalu balik lagi (coming soon) */
-.door-page--zooming .door-page__trigger {
-  transform-origin: var(--face-origin-x) var(--face-origin-y);
-  will-change: transform;
-  animation: door-peek-zoom 1.8s ease-in-out forwards;
-}
-
-.door-page--zooming .door-page__hint {
-  animation: door-peek-hint 1.8s ease-in-out forwards;
-}
-
-.door-page--zooming .door-page__veil {
-  animation: door-peek-veil 1.8s ease-in-out forwards;
-}
-
-@keyframes door-peek-zoom {
-  0%,
-  100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(28);
-  }
-}
-
-@keyframes door-peek-hint {
-  0%,
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  20%,
-  80% {
-    opacity: 0;
-    transform: translateY(4px);
-  }
-}
-
-@keyframes door-peek-veil {
-  0%,
-  100% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 0.88;
-  }
-}
-
-/* Animasi masuk pintu: zoom ke panel ungu → gelap → terang (shop) */
+/* Animasi masuk pintu saat launch (COMING_SOON off) */
 .door-page--entering .door-page__trigger {
   animation: door-walk-in 1.6s cubic-bezier(0.45, 0.05, 0.2, 1) forwards;
 }
@@ -194,48 +110,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .door-page--zooming .door-page__trigger {
-    animation: door-peek-zoom-reduced 0.65s ease-in-out forwards;
-  }
-
-  .door-page--zooming .door-page__hint {
-    animation: door-peek-hint-reduced 0.65s ease-in-out forwards;
-  }
-
-  .door-page--zooming .door-page__veil {
-    animation: door-peek-veil-reduced 0.65s ease-in-out forwards;
-  }
-
-  @keyframes door-peek-zoom-reduced {
-    0%,
-    100% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.05);
-    }
-  }
-
-  @keyframes door-peek-hint-reduced {
-    0%,
-    100% {
-      opacity: 1;
-    }
-    50% {
-      opacity: 0.65;
-    }
-  }
-
-  @keyframes door-peek-veil-reduced {
-    0%,
-    100% {
-      opacity: 0;
-    }
-    50% {
-      opacity: 0.25;
-    }
-  }
-
   .door-page--entering .door-page__trigger {
     animation: door-walk-in-reduced 0.5s ease forwards;
   }
